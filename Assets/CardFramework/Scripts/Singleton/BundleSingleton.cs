@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class BundleSingleton : Singleton<BundleSingleton>
 {
@@ -67,7 +68,7 @@ public class BundleSingleton : Singleton<BundleSingleton>
 		if (_currentLevelAssetBundle != null && Application.CanStreamedLevelBeLoaded(level))
 		{
 			BundleSingleton.Instance.UnloadAllBundles();
-			Application.LoadLevel(level);	
+			SceneManager.LoadScene(level, LoadSceneMode.Single);
 		}
 		else
 		{

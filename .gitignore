@@ -22,3 +22,6 @@
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
