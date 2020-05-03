@@ -3,10 +3,6 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-- task: UnityGetProjectVersionTask@1
-  name: UnityProjectVersion
-  displayName: 'Unity Get Project Version'
-  inputs:
 
 trigger:
 - master
@@ -16,6 +12,9 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+- task: UnityGetProjectVersionTask@1
+  name: UnityProjectVersion
+  displayName: 'Unity Get Project Version'
 - script: echo This project is using Unity version $(UnityProjectVersion.projectVersion)
   displayName: 'Run a one-line script'
 
