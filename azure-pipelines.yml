@@ -1,24 +1,109 @@
 # Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
+# See YAML schema reference from Microsoft Azure DevOps / Azure Pipelines / Reference / YAMAL schema
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
 # https://aka.ms/yaml
-
 
 trigger:
 - master
 
-pool:
-  name: 'Azure Pipelines'
-  vmImage: 'windows-latest'
+stages:
 
-steps:
-- task: UnityGetProjectVersionTask@1
-  name: UnityProjectVersion
-  displayName: 'Unity Get Project Version'
-- script: echo This project is using Unity version $(UnityProjectVersion.projectVersion)
-  displayName: 'Run a one-line script'
+#Build
+- stage: BuildUnityPlatforms
+  displayName: Unity Build Platform(s)
+  jobs:
+  - job: CleanBuildOnWindows
+    displayName: Target Windows Standalone
+    pool:
+      name: 'Azure Pipelines'
+      vmImage: 'windows-latest'
+    workspace:
+      clean: all
+    steps:
+    - task: UnityGetProjectVersionTask@1
+      name: UnityProjectVersion
+      displayName: 'Unity Get Project Version'
+    - script: echo This project is using Unity version $(UnityProjectVersion.projectVersion)
+      displayName: 'Porject Version'
+    - script: |
+        echo Add other tasks to build, test, and deploy your project.
+        echo See https://aka.ms/yaml
+        displayName: 'Example multi-line script run'
+  - job: CleanBuildOnMac
+    displayName: Target Mac Standalone
+    steps:
+    - script: echo Build Stub for Mac
+  - job: CleanBuildOnLinux
+    displayName: Target Linux Standalone
+    steps:
+    - script: echo Build Stub for Linux
+  - job: CleanBuildOnWebGL
+    displayName: Target WebGL
+    steps:
+    - script: echo Build Stub for WebGL
+  - job: CleanBuildOniOS
+    displayName: Target iOS
+    steps:
+    - script: echo Build Stub for iOS
+  - job: CleanBuildOnAndroid
+    displayName: Target Android
+    steps:
+    - script: echo Build Stub for Android
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+#Test
+- stage: TestUnityPlatforms
+  displayName: Unity Test Platform(s)
+  jobs:
+  - job: TestOnWindows
+    displayName: Test Windows Standalone
+    steps:
+    - script: echo Testing Stub for Windows
+  - job: TestOnMac
+    displayName: Test Mac Standalone
+    steps:
+    - script: echo Testing Stub for Mac
+  - job: TestOnLinux
+    displayName: Test Mac Standalone
+    steps:
+    - script: echo Testing Stub for Mac
+  - job: TestOnWebGL
+    displayName: Test WebGL
+    steps:
+    - script: echo Testing Stub for WebGL
+  - job: TestOniOS
+    displayName: Test iOS
+    steps:
+    - script: echo Testing Stub for iOS
+  - job: TestOnAndroid
+    displayName: Test Android
+    steps:
+    - script: echo Testing Stub for Android
+
+# Deploy
+- stage: DeployUnityPlatforms
+  displayName: Unity Deploy Platform(s)
+  jobs:
+  - job: DeployOnWindows
+    displayName: Deploy Windows Standalone
+    steps:
+    - script: echo Deploying Stub for Windows
+  - job: DeployOnMac
+    displayName: Deploy Mac Standalone
+    steps:
+    - script: echo Deploying Stub for Mac
+  - job: DeployOnLinux
+    displayName: Deploy Mac Standalone
+    steps:
+    - script: echo Deploying Stub for Mac
+  - job: DeployOnWebGL
+    displayName: Deploy WebGL
+    steps:
+    - script: echo Deploying Stub for WebGL
+  - job: DeployOniOS
+    displayName: Deploy iOS
+    steps:
+    - script: echo Deploying Stub for iOS
+  - job: DeployOnAndroid
+    displayName: Deploy Android
+    steps:
+    - script: echo Deploying Stub for Android
